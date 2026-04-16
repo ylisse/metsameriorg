@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metsameri</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00a050;
+    --white: #ffffff;
+    --black: #0a0a0a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--green);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ── TOP NAV BAR ── */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 14px 28px;
+    background: var(--white);
+    border-bottom: 1px solid var(--green);
+  }
+
+  .topbar-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .topbar-label {
+    font-size: 13.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green);
+    display: inline-block;
+    padding: 1px 5px;
+    width: fit-content;
+    margin-bottom: 3px;
+  }
+
+  .topbar-value {
+    font-size: 16.5px;
+    letter-spacing: 0.04em;
+    color: var(--green);
+    line-height: 1.4;
+  }
+
+  .topbar-value a {
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  .topbar-value a:hover {
+    text-decoration: underline;
+  }
+
+  #clock {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 40px 60px;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 32px;
+  }
+
+  .hero-title {
+    font-family: 'IM Fell English', 'UnifrakturMaguntia', Georgia, serif;
+    font-size: clamp(72px, 14vw, 200px);
+    font-weight: 400;
+    color: var(--green);
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+  }
+
+  .hero-sub {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: clamp(22.5px, 2.7vw, 33px);
+    font-style: italic;
+    color: var(--green);
+    max-width: 520px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .hero-founder {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.6;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--green);
+    margin: 0 28px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 80px 28px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 13.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green);
+    display: inline-block;
+    padding: 2px 7px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 400;
+    color: var(--green);
+    margin-bottom: 28px;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: var(--green);
+    margin-bottom: 16px;
+    max-width: 660px;
+    opacity: 0.85;
+    font-size: 19.5px;
+    line-height: 1.75;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ── PILLARS ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--green);
+    border-left: 1px solid var(--green);
+  }
+
+  .pillar {
+    padding: 36px 32px;
+    border-right: 1px solid var(--green);
+    border-bottom: 1px solid var(--green);
+  }
+
+  .pillar-number {
+    font-size: 19.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.5;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  /* ── BRIDGING ── */
+  .bridging {
+    margin-top: 40px;
+    padding: 32px;
+    border: 1px solid var(--green);
+  }
+
+  .bridging p {
+    max-width: 100%;
+    font-style: italic;
+    opacity: 1;
+  }
+
+  /* ── HOW ── */
+  .steps {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--green);
+    border-left: 1px solid var(--green);
+  }
+
+  .step {
+    padding: 32px 28px;
+    border-right: 1px solid var(--green);
+    border-bottom: 1px solid var(--green);
+  }
+
+  .step-name {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 25px;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--green);
+  }
+
+  .project {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--green);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .project-meta {
+    font-size: 13.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.6;
+    padding-top: 4px;
+  }
+
+  .project h3 { margin-bottom: 8px; }
+  .project p { margin-bottom: 0; }
+
+  /* ── ABOUT ── */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 60px;
+    align-items: start;
+    margin-top: 40px;
+  }
+
+  .about-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center center;
+    border: 2px solid var(--green);
+
+  }
+
+  .name-section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--green);
+  }
+
+  .name-section p {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-style: italic;
+    font-size: 27px;
+    opacity: 1;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 60px 28px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid var(--green);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 9px 22px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .btn:hover { background: var(--green); color: var(--white); }
+  .btn-filled { background: var(--green); color: var(--white); }
+  .btn-filled:hover { opacity: 0.75; }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 9px;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--green);
+    opacity: 0.5;
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .topbar { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pillars-grid, .steps { grid-template-columns: 1fr; }
+    .about-layout { grid-template-columns: 1fr; }
+    .project { grid-template-columns: 1fr; gap: 8px; }
+    .hero-title { font-size: clamp(56px, 20vw, 120px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV BAR -->
+<header class="topbar">
+  <div class="topbar-cell">
+    <span class="topbar-label">Index</span>
+    <div class="topbar-value">
+      <a href="#what-i-do">What I do</a><br>
+      <a href="#how">How it works</a>
+    </div>
+  </div>
+  <div class="topbar-cell">
+    <span class="topbar-label">Who</span>
+    <div class="topbar-value">
+      <a href="#who">Partners</a><br>
+      <a href="#about">About</a>
+    </div>
+  </div>
+  <div class="topbar-cell">
+    <span class="topbar-label">Contact</span>
+    <div class="topbar-value">
+      <a href="mailto:liza.kaluzhskaia@gmail.com">liza.kaluzhskaia<br>@gmail.com</a>
+    </div>
+  </div>
+  <div class="topbar-cell">
+    <span class="topbar-label">Follow</span>
+    <div class="topbar-value">
+      <a href="https://www.instagram.com/metsa.meri" target="_blank">Instagram</a><br>
+      <a href="https://www.linkedin.com/in/liza-kaluzhskaia-59b279b2/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero fade-in">
+  <h1 class="hero-title">Metsameri</h1>
+  <p class="hero-sub">Community-led ocean and environmental organisations do remarkable work. Metsameri builds the infrastructure that helps that work get seen, funded, and sustained.</p>
+  <p class="hero-founder">Founded by Liza Kaluzhskaia</p>
+</div>
+
+<hr class="divider">
+
+<!-- PROBLEM -->
+<section id="problem" class="fade-in">
+  <span class="section-label">The problem</span>
+  <p>Community-led ocean and environmental organisations are doing some of the most important work in conservation. But they're often stretched thin – managing programmes, building community trust, delivering on the ground, and seeking funding opportunities.</p>
+  <p>Data management plans, impact reporting systems, funding strategies, outreach and partnerships – these things matter enormously to funders and institutional partners, but they take time, expertise, and resources that small teams simply don't have.</p>
+  <p>Citizen science projects face an additional challenge: the data communities collect is often rich and irreplaceable, but without the right systems and frameworks, it struggles to be taken seriously by scientists and funders alike.</p>
+  <p>This is where Metsameri comes in.</p>
+</section>
+
+<hr class="divider">
+
+<!-- WHAT I DO -->
+<section id="what-i-do" class="fade-in">
+  <span class="section-label">What I do</span>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-number">01</span>
+      <h3>Impact Reporting</h3>
+      <p>Your work is creating real change – but without the right systems in place, it's hard to show it. I help you figure out what to measure, how to collect it, and how to present it in a way that resonates with funders, partners, and the communities you serve.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-number">02</span>
+      <h3>Partnerships &amp; Connections</h3>
+      <p>The right connection at the right moment can change everything for a small organisation. I map the funding landscape, identify relevant partners, and open doors – connecting community-led organisations to the allies, platforms, and opportunities that can help them grow.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-number">03</span>
+      <h3>Citizen Science Data Systems</h3>
+      <p>Citizen science generates some of the most valuable environmental data in existence – collected by the people closest to the ecosystems being studied. I help citizen science initiatives build that infrastructure: data management plans, collection systems, quality frameworks, and visualisations that make community data credible, usable, and theirs.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-number">04</span>
+      <h3>Learning &amp; Engagement</h3>
+      <p>The organisations closest to the ocean often have the deepest knowledge to share – but reaching beyond their immediate community takes time and expertise they don't always have. I design learning programmes and engagement strategies that connect ocean and environmental organisations to new audiences.</p>
+    </div>
+  </div>
+
+  <div class="bridging">
+    <p>These four areas work together. Funders want to see that your work is real, measurable, connected, and rooted in the communities you serve. Together, they build an organisation that is fundable and community-rooted.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HOW -->
+<section id="how" class="fade-in">
+  <span class="section-label">How it works</span>
+  <div class="steps">
+    <div class="step">
+      <div class="step-name">Assess</div>
+      <p>We start together – looking at what's there, what's missing, and what matters most. Always with an eye on building the organisation's own capacity to understand and use what we create.</p>
+    </div>
+    <div class="step">
+      <div class="step-name">Build</div>
+      <p>From data infrastructure and impact reports to partnership strategies and learning programmes – we build what's needed, shaped around the organisation's reality and priorities.</p>
+    </div>
+    <div class="step">
+      <div class="step-name">Hand over</div>
+      <p>Everything we build stays with the organisation – documented in plain language and accessible protocols, ready to run independently and adapt over time.</p>
+    </div>
+    <div class="step">
+      <div class="step-name">Amplify</div>
+      <p>Connections to funders, partners, platforms, and networks are established and supported – so the organisation can grow beyond our work together.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WHO -->
+<section id="who" class="fade-in">
+  <span class="section-label">Who I work with</span>
+  <p>Metsameri works with community-led organisations operating in and around ocean and coastal environments – charities, NGOs, grassroots and citizen science initiatives who saw the problem up close and couldn't wait for someone else to fix it.</p>
+  <p>They know their communities, their ecosystems, and their cause deeply. What they need is the infrastructure to navigate the increasing demands of funders, institutions, and systems around them – without losing sight of why they started.</p>
+</section>
+
+<hr class="divider">
+
+<!-- CURRENT PROJECTS -->
+<section id="current_projects" class="fade-in">
+  <span class="section-label" style="font-size:13.5px;">Current projects</span>
+  <div class="projects">
+    <div class="project">
+      <div class="project-meta">France</div>
+      <div>
+        <h3>The Floating Stories Lab</h3>
+        <p>A citizen science and climate storytelling collective working at the intersection of community, ocean, and climate action. As Board Advisor, my role is to support partnership development, citizen science strategy, and outreach.</p>
+      </div>
+    </div>
+    <div class="project">
+      <div class="project-meta">United Kingdom</div>
+      <div>
+        <h3>The Magenta Project</h3>
+        <p>A charity advancing gender equity and inclusion in the sailing and marine industry. Together, we identified the gaps in their data and impact reporting – and I'm building the infrastructure to fill them.</p>
+      </div>
+    </div>
+    <div class="project">
+      <div class="project-meta">United States</div>
+      <div>
+        <h3>Women &amp; the Wind Foundation</h3>
+        <p>A foundation supporting women-led, environmentally-focused adventure initiatives through mentorship, fiscal sponsorship, and community building. My role is to build the data analytics infrastructure that measures and communicates the impact of their work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <span class="section-label">About</span>
+  <div class="about-layout">
+    <div class="about-text">
+      <h2>Liza Kaluzhskaia</h2>
+      <p>I think of myself as a flying fish – someone who moves fluidly between worlds, bringing knowledge from one place into another. I've worked across contemporary art, alternative education, data analytics, citizen science, and ocean-connected organisations.</p>
+      <p>For the last ten years, I have been specialising in alternative education, gaining extensive experience working in learning departments at museums, community centres, schools, self-organised settings, and grassroots organisations.</p>
+      <p>What has stayed with me across all of it is people's transformative power – the capacity communities have to reimagine their situation and act on it, when given the right conditions and tools.</p>
+    </div>
+    <div>
+      <img src="data:image/webp;base64,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" alt="Liza Kaluzhskaia" class="about-photo">
+    </div>
+  </div>
+
+  <div class="name-section">
+    <p>Metsameri comes from the Finnish metsämeri – the phenomenon where a vast forest, seen from above, looks like an ocean and the vast ocean seen from below looks like a forest. A place where everything is interconnected.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section fade-in" id="contact">
+  <a href="mailto:liza.kaluzhskaia@gmail.com" class="btn btn-filled">Email</a>
+  <a href="https://www.linkedin.com/in/liza-kaluzhskaia-59b279b2/" class="btn" target="_blank">LinkedIn</a>
+  <a href="https://www.instagram.com/metsa.meri" class="btn" target="_blank">Instagram</a>
+</div>
+
+<footer>© 2026 Metsameri · metsameri.org</footer>
+
+<script>
+  // Fade in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) el.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  setTimeout(() => document.querySelector('.hero').classList.add('visible'), 80);
+</script>
+</body>
+</html>
